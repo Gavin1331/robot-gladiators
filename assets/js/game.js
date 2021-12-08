@@ -5,8 +5,17 @@ var randomNumber = function(min, max) {
   return value;
 };
 
+// function to set name
+var getPlayerName = function() {
+  var name = "";
+  while (name === "" || name === null) {
+    name = prompt("What is your robot's name?");
+  }
+  console.log("Your robot's name is " + name);
+};
+
 var playerInfo = {
-  name: window.prompt("What is your robot's name?"),
+  name: getPlayerName(),
   health: 100,
   attack: 10,
   money: 10,
@@ -119,7 +128,6 @@ var fight = function(enemy) {
 var startGame = function() {
   // reset player stats
   playerInfo.reset();
-
   for(var i = 0; i < enemyInfo.length; i++) {
     if (playerInfo.health > 0) {
       // let player know what round it is, arrays start at zero so we add 1
@@ -128,7 +136,6 @@ var startGame = function() {
       var pickedEnemyObj = enemyInfo[i];
       // reset enemy health
       pickedEnemyObj.health = randomNumber(40, 60);
-       debugger;
       // pass the pickedenemy.name variable's value into the fight fuction where it will assume the value of the enemy.name parameter
       fight(pickedEnemyObj);
       // if player is still alive & we're not at the last enemy in array
